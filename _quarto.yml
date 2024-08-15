@@ -1,0 +1,23 @@
+project:
+  type: website
+
+website:
+  title: "Sultana Mubarika Rahman Chowdhury"
+  navbar:
+    left:
+      - href: about.qmd
+        text: About
+      - href: resume.qmd
+        text: Resume
+      - href: talks.qmd
+        text: Blog
+
+
+format:
+  html:
+    theme: sandstone
+    css: styles.css
+    toc: true
+
+editor: visual
+

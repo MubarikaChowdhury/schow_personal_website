@@ -1,0 +1,100 @@
+[
+  {
+    "objectID": "talks.html",
+    "href": "talks.html",
+    "title": "My Blog",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nOrdinal Logistic Regression\n\n\n9 min\n\n\n\nAug 14, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/ordinary_logistic_20240814/index.html",
+    "href": "posts/ordinary_logistic_20240814/index.html",
+    "title": "Ordinal Logistic Regression",
+    "section": "",
+    "text": "We are all familiar with the concept of Logistic regression. It is used to analyze data when the outcome variables is categorical. There are three types of logistic regression, Binary logistic regression where the outcome variable is binary (Yes/No), Multinomial logistic regression when the outcome variable is categorical with three or more categories, Ordinal logistic regression where there is a natural ordering among three or more categories of the outcome variable(Agresti 2002) .\nTitle: Types of Logistic Regression\n\n\n\n\n\n\n\n\n\n\nBinary LR\nMultinomial LR\nOrdinal LR\n\n\n\n\nNumber of categories of the outcome\nTwo\nThree or more\nThree or more\n\n\nOrdering matters\nNo\nNo\nYes"
+  },
+  {
+    "objectID": "posts/ordinary_logistic_20240814/index.html#model-assumptions",
+    "href": "posts/ordinary_logistic_20240814/index.html#model-assumptions",
+    "title": "Ordinal Logistic Regression",
+    "section": "Model Assumptions",
+    "text": "Model Assumptions\nThe key assumptions of Ordinary logistic Regression which ensures the validity of the model are as follows,\n\nThe outcome variable is ordered.\nThe predictor variables are either continuous, categorical or ordinal.\nThere is no multicollinearity among the predictors.\nProportional odds."
+  },
+  {
+    "objectID": "posts/ordinary_logistic_20240814/index.html#libraries",
+    "href": "posts/ordinary_logistic_20240814/index.html#libraries",
+    "title": "Ordinal Logistic Regression",
+    "section": "Libraries",
+    "text": "Libraries\nHere are libraries required to run the analysis.\n\n\nCode\n# install.packages(\"multgee\")\n# install.packages(\"pander\")\n# install.packages(\"table1\")\n# install.packages(\"car\")\nlibrary(table1)\n\nAttaching package: 'table1'\nThe following objects are masked from 'package:base':\n\n    units, units&lt;-\nlibrary(multgee)\nLoading required package: gnm\nlibrary(skimr)\nlibrary(pander)\nlibrary(gtsummary)\nlibrary(car)\nLoading required package: carData\nlibrary(table1)\nlibrary(conflicted)\nError: package or namespace load failed for 'conflicted':\n .onLoad failed in loadNamespace() for 'conflicted', details:\n  call: loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]])\n  error: namespace 'fastmap' 1.1.1 is already loaded, but &gt;= 1.2.0 is required\nsuppressMessages(conflict_prefer(\"filter\", \"dplyr\", quiet = TRUE))\nError in conflict_prefer(\"filter\", \"dplyr\", quiet = TRUE): could not find function \"conflict_prefer\"\nsuppressPackageStartupMessages(library(tidyverse))\n# suppress \"`summarise()` has grouped output by \" messages\noptions(dplyr.summarise.inform = F)\n\n\n\nWarning\nInstead of installing package MASS to the global environment use MASS::polr() for running the Ordinal Logistic Regression model. As masking it conflicts wirh the select() function for tidyverse and gtsummary()."
+  },
+  {
+    "objectID": "posts/ordinary_logistic_20240814/index.html#exploring-data",
+    "href": "posts/ordinary_logistic_20240814/index.html#exploring-data",
+    "title": "Ordinal Logistic Regression",
+    "section": "Exploring data",
+    "text": "Exploring data\nLet’s begin by looking at the data.\n\n\nCode\n# loading data\n\narthritis_df &lt;- multgee::arthritis\n\ndf &lt;- arthritis_df %&gt;%\n  mutate(\n    y = as.factor(y),\n    sex = factor(sex,\n      levels = c(1, 2),\n      labels = c(\"Female\", \"Male\")\n    ),\n    treatment = factor(trt,\n      levels = c(\"1\", \"2\"),\n      labels = c(\"Placebo\", \"Drug\")\n    ),\n    baseline = factor(baseline)\n  ) %&gt;%\n  select(\"y\", \"sex\", \"age\", \"treatment\", \"baseline\") %&gt;%\n  drop_na()\n\n\n\nSummary\n\n\nCode\nskim(df)\n\n\n\nData summary\n\n\nName\ndf\n\n\nNumber of rows\n888\n\n\nNumber of columns\n5\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\nfactor\n4\n\n\nnumeric\n1\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: factor\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nordered\nn_unique\ntop_counts\n\n\n\n\ny\n0\n1\nFALSE\n5\n3: 345, 4: 275, 2: 159, 5: 76\n\n\nsex\n0\n1\nFALSE\n2\nMal: 645, Fem: 243\n\n\ntreatment\n0\n1\nFALSE\n2\nDru: 445, Pla: 443\n\n\nbaseline\n0\n1\nFALSE\n5\n3: 407, 2: 215, 4: 166, 1: 67\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nage\n0\n1\n50.4\n11.1\n21\n42\n54\n60\n66\n▁▃▃▇▇\n\n\n\n\n\n\n\nDescriptives\n\n\nCode\ntbl_summary(df, by = treatment) %&gt;%\n  modify_caption(\"**Table 1. Predictors by treatment group**\")\n\n\n\n\n\n\nTable 1. Predictors by treatment group\n\n\n\n\n\n\n\nCharacteristic\nPlacebo, N = 4431\nDrug, N = 4451\n\n\n\n\ny\n\n\n\n\n\n\n    1\n26 (5.9%)\n7 (1.6%)\n\n\n    2\n96 (22%)\n63 (14%)\n\n\n    3\n165 (37%)\n180 (40%)\n\n\n    4\n129 (29%)\n146 (33%)\n\n\n    5\n27 (6.1%)\n49 (11%)\n\n\nsex\n\n\n\n\n\n\n    Female\n127 (29%)\n116 (26%)\n\n\n    Male\n316 (71%)\n329 (74%)\n\n\nage\n55 (42, 60)\n53 (42, 59)\n\n\nbaseline\n\n\n\n\n\n\n    1\n33 (7.4%)\n34 (7.6%)\n\n\n    2\n105 (24%)\n110 (25%)\n\n\n    3\n207 (47%)\n200 (45%)\n\n\n    4\n83 (19%)\n83 (19%)\n\n\n    5\n15 (3.4%)\n18 (4.0%)\n\n\n\n1 n (%); Median (IQR)\n\n\n\n\n\n\n\n\n\n\nPlotting Outcome variable (rheumatoid arthritis score)\n\n\nCode\ndf %&gt;%\n  ggplot(\n    .,\n    aes(y)\n  ) +\n  geom_bar(aes(y = after_stat(count) / sum(after_stat(count))), position = \"dodge\") +\n  scale_y_continuous(labels = scales::percent) +\n  ylab(\"realtive frequencies\") +\n  xlab(\"score\")"
+  },
+  {
+    "objectID": "posts/ordinary_logistic_20240814/index.html#how-to-use-polr",
+    "href": "posts/ordinary_logistic_20240814/index.html#how-to-use-polr",
+    "title": "Ordinal Logistic Regression",
+    "section": "How to use Polr()",
+    "text": "How to use Polr()\nThe basic structure of the function looks like this:\npolr(formula, data, weights, start, ..., subset, na.action, contrasts = NULL, Hess = FALSE, model = TRUE, method = c(\"logistic\", \"probit\", \"loglog\", \"cloglog\", \"cauchit\"))\nHere,\n\nformula a formula expression as for regression models, of the form response ~ predictors. The response should be a factor (preferably an ordered factor), which will be interpreted as an ordinal response, with levels ordered as in the factor. The model must have an intercept: attempts to remove one will lead to a warning and be ignored. An offset may be used. See the documentation of formula for other details.\ndata an optional data frame, list or environment in which to interpret the variables occurring in formula.\nweights optional case weights in fitting. Default to 1.\nstart initial values for the parameters. This is in the format c(coefficients, zeta): see the Values section.\n... additional arguments to be passed to optim, most often a control argument.\nsubset expression saying which subset of the rows of the data should be used in the fit. All observations are included by default.\nna.action a function to filter missing data.\ncontrasts a list of contrasts to be used for some or all of the factors appearing as variables in the model formula.\nHess logical for whether the Hessian (the observed information matrix) should be returned. Use this if you intend to call summary or variance covariance on the fit.\nmodel logical for whether the model matrix should be returned.\nmethod logistic or probit or (complementary) log-log or cauchit (corresponding to a Cauchy latent variable)."
+  },
+  {
+    "objectID": "posts/ordinary_logistic_20240814/index.html#fitting-the-model",
+    "href": "posts/ordinary_logistic_20240814/index.html#fitting-the-model",
+    "title": "Ordinal Logistic Regression",
+    "section": "Fitting the model",
+    "text": "Fitting the model\nUsing this function lets fit the data,\n\n\nCode\n## fitting the model\n\nfit_olr_mod &lt;-\n  MASS::polr(y ~ ., data = df, Hess = T)\n\npander(summary(fit_olr_mod))\n\n\nCall: MASS::polr(formula = y ~ ., data = df, Hess = T)\n\nCoeficients\n\n\n\n\n\n\n\n\n \nValue\nStd. Error\nt value\n\n\n\n\nsexMale\n0.1513\n0.1377\n1.099\n\n\nage\n-0.01366\n0.005713\n-2.391\n\n\ntreatmentDrug\n0.5454\n0.1255\n4.347\n\n\nbaseline2\n0.6288\n0.2708\n2.322\n\n\nbaseline3\n1.152\n0.2591\n4.446\n\n\nbaseline4\n2.474\n0.2931\n8.442\n\n\nbaseline5\n3.994\n0.426\n9.376\n\n\n\n\nIntercepts\n\n\n\n\n\n\n\n\n \nValue\nStd. Error\nt value\n\n\n\n\n1|2\n-2.595\n0.4306\n-6.026\n\n\n2|3\n-0.5127\n0.4092\n-1.253\n\n\n3|4\n1.442\n0.4139\n3.485\n\n\n4|5\n3.744\n0.4298\n8.711\n\n\n\nResidual Deviance: 2238.92\nAIC: 2260.92\n\n\nThe function gives us the coefficients, intercepts along with their standard error and t statistic."
+  },
+  {
+    "objectID": "posts/ordinary_logistic_20240814/index.html#odds-ratio",
+    "href": "posts/ordinary_logistic_20240814/index.html#odds-ratio",
+    "title": "Ordinal Logistic Regression",
+    "section": "Odds Ratio",
+    "text": "Odds Ratio\nIn order to get the Odds Ratio and their confidence interval we take the exponential of the coefficient. There is no straight forward way of doing that in R. Below is one way of solving that issue.\n\n\nCode\n## Odds ratio and Confidence Interval\n\nCI &lt;- confint(fit_olr_mod)\nWaiting for profiling to be done...\nresults &lt;- data.frame(\n  Variable = c(\n    \"sex_male\", \"age\", \"treatment_drug\", \"baseline_2\", \"baseline_3\", \"baseline_4\",\n    \"baseline_5\"\n  ),\n  OR = exp(fit_olr_mod$coefficients),\n  lower = exp(CI[, 1]),\n  upper = exp(CI[, 2])\n)\nodds_ratio &lt;- results %&gt;% tibble()\npander(odds_ratio)\n\n\n\n\n\n\n\n\n\n\n\nVariable\nOR\nlower\nupper\n\n\n\n\nsex_male\n1.163\n0.8883\n1.524\n\n\nage\n0.9864\n0.9754\n0.9975\n\n\ntreatment_drug\n1.725\n1.35\n2.208\n\n\nbaseline_2\n1.875\n1.103\n3.193\n\n\nbaseline_3\n3.164\n1.906\n5.268\n\n\nbaseline_4\n11.87\n6.701\n21.16\n\n\nbaseline_5\n54.25\n23.71\n126.3"
+  },
+  {
+    "objectID": "posts/ordinary_logistic_20240814/index.html#interpreting-the-results",
+    "href": "posts/ordinary_logistic_20240814/index.html#interpreting-the-results",
+    "title": "Ordinal Logistic Regression",
+    "section": "Interpreting the Results",
+    "text": "Interpreting the Results\n\nSex: Compared to female participants, Male participants had 1.16 fold higher odds of reporting high score of rheumatoid arthritis\nAge: For 1 year change in age the odds of reporting high rheumatoid arthritis score changes 0.99 times.\nTreatment: Compared to the Placebo group participants, the participant who received the drug had 1.73 times higher odds of reporting high score of rheumatoid arthritis."
+  },
+  {
+    "objectID": "posts/ordinary_logistic_20240814/index.html#checking-assumptions",
+    "href": "posts/ordinary_logistic_20240814/index.html#checking-assumptions",
+    "title": "Ordinal Logistic Regression",
+    "section": "Checking Assumptions",
+    "text": "Checking Assumptions\nNext we check the key assumptions to verify whether the model is appropriate to use.\n\nMulticollinearity\n\nPairs Plot\n\n\nCode\n## model assumption\n\n# Pairs plot to check multicollinearity\ndf %&gt;%\n  GGally::ggpairs()\nRegistered S3 method overwritten by 'GGally':\n  method from   \n  +.gg   ggplot2\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\n\nAs there is only have one continuous variable the pairs plot is not that useful. So instead let’s check the pairwise correlation among predictors.\n\n\nCorrelation Plot\n\n\nCode\narthritis_df %&gt;%\n  GGally::ggcorr(\n    method = c(\"pairwise\"),\n    label = TRUE\n  ) # low cor coft, may assume no multicollinearity\n\n\n\n\n\n\n\n\n\nThe correlation is quite low among the predictors so there is no multicollinearity.\n\n\n\nProportional Odds\nOrdinal logistic regression makes the assumption that the relationship between each pair of outcome groups is the same. In other words, ordinal logistic regression assumes that the coefficients describing the relationship between, say, the lowest and all higher categories of the response variable are the same as those describing the relationship between the next lowest and all higher categories, and so on. This assumption can be vefied several way. Here, I have used a package called (Wong 2021) that generates graphics to check for proportional odds assumption created by UCLA statistical consulting group see more .\n\nGraphics to check for proportional odds\n\n\nCode\n# install.packages(\"pomcheckr\")\nlibrary(pomcheckr)\npomchk &lt;-\n  pomcheck(y ~ sex + age + treatment + baseline, data = df)\nplot(pomchk)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHere the function is calculating the difference in proportion of the categories in the outcome variable and plotting them against each category of the predictors. In idea case scinario is the distance between the dots in each line is somewhat equal they will be considered proportional."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Sultana Mubarika Rahman Chowdhury",
+    "section": "",
+    "text": "Hi there!\nI’m Sultana Mubarika Rahman Chowdhury, a Ph.D. candidate in Public Health with a focus on Biostatistics at Florida International University. My academic journey includes a Master’s in Statistics from FIU and another from the University of Chittagong, where I delved into diverse statistical analyses and applications.\nCurrently, I am a Graduate Assistant at FIU’s Biostatistics Department, where I engage in teaching and research on advanced statistical methods and R programming. My expertise spans various statistical software and programming languages including R and SAS, and I am skilled in reproducible reporting with tools like Rmarkdown and Quarto. My research interest encompasses around using statistics for answering emerging medicine and public health issues.\nExplore my site to learn more about my work, projects, and publications.\n \n  \n   \n  \n    \n     Email\n  \n  \n    \n     Github\n  \n  \n    \n     Linkedin\n  \n  \n    \n     OrcID"
+  },
+  {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Resume",
+    "section": "",
+    "text": "The pdf version of this CV can be downloaded here"
+  },
+  {
+    "objectID": "resume.html#honors-and-awards",
+    "href": "resume.html#honors-and-awards",
+    "title": "Resume",
+    "section": "Honors and Awards",
+    "text": "Honors and Awards\n\nPosit::Conf (2023) Opportunity Scholar.\nChittagong University Dean’s Scholarship for graduate students (2017) : Merit based."
+  },
+  {
+    "objectID": "resume.html#published",
+    "href": "resume.html#published",
+    "title": "Resume",
+    "section": "Published",
+    "text": "Published\n\nChowdhury, S. M. R., Zhou, M., Kuang, L.; & Hu, N. (2023) Association between continuity of primary care with chronic conditions among patients in Guangdong Province, China. The Open Public Health Journal., 16.\nChowdhury, S. M. R., George, F., Gulati, S. (2023). An application of logistic regression on Add health data: childhood abuse and anxiety. JBE, 8(3):314-327.\nGeorge, F., Chowdhury, S. M. R., & Gulati, S. (2022). Application of Logistic Regression on Heart Disease Data and a Review of Some Standardization Methods. International Journal of Statistics and Probability, 11(5).\nPebley, K., Farage, G., Hare, M. E., Bursac, Z., Andres, A., Chowdhury, S. M. R., … & Krukowski, R. A. (2022). Changes in self-reported and accelerometer-measured physical activity among pregnant TRICARE Beneficiaries. BMC Public Health, 22(1), 1-8.\nPérez-Muñoz, A., Horn, T. L., Graber, J., Chowdhury, S. M. R., Bursac, Z., & Krukowski, R. A. (2022). Recruitment strategies for a post cessation weight management trial: A comparison of strategy cost-effectiveness and sample diversity. Contemporary Clinical Trials Communications, 30, 101037."
+  }
+]

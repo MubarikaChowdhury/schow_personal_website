@@ -1,0 +1,38 @@
+{
+  "about.qmd": {
+    "about.html": "694a267d"
+  },
+  "index.qmd": {
+    "index.html": "4a38f094"
+  },
+  "resume.qmd": {
+    "resume.html": "286330b6"
+  },
+  "talks.qmd": {
+    "talks.html": "d9277d79"
+  },
+  "posts/counting_process.qmd": {
+    "counting_process.html": "f8bfe1cc"
+  },
+  "posts/survey_data.qmd": {
+    "survey_data.html": "bdea1a4c"
+  },
+  "posts/survival.qmd": {
+    "survival.html": "7d7e2276"
+  },
+  "cv.Rmd": {
+    "cv.html": "a0e2bea6"
+  },
+  "posts/ordinal_logistic.qmd": {
+    "ordinal_logistic.html": "7426f6eb"
+  },
+  "posts/ordinal_logistic_files/ordinal_logistic.qmd": {
+    "ordinal_logistic.html": "043e1bde"
+  },
+  "posts/counting_process/counting_process.qmd": {
+    "counting_process.html": "e17063ed"
+  },
+  "posts/ordinary_logistic_20240814/index.qmd": {
+    "index.html": "2607e457"
+  }
+}

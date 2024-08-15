@@ -1,0 +1,34 @@
+---
+title: "Sultana Mubarika Rahman Chowdhury"
+image:  mypic3.jpeg
+about: 
+  template: jolla
+  image-width: 16em
+  image-shape: round
+  links: 
+    - text: Email
+      icon: envelope
+      href: mailto:schow034@fiu.edu
+    - text: Github
+      icon: github
+      href: https://github.com/MubarikaChowdhury
+    - text: Linkedin
+      icon: linkedin
+      href: https://www.linkedin.com/in/sultana-mubarika-rahman-chowdhury-3a4876155/ 
+    - text: OrcID
+      icon: orcid
+      href: https://orcid.org/0000-0002-2690-8338
+    
+  id: ppc
+---
+
+::: {#ppc}
+
+Hi there!
+
+I’m Sultana Mubarika Rahman Chowdhury, a Ph.D. candidate in Public Health with a focus on Biostatistics at Florida International University. My academic journey includes a Master’s in Statistics from FIU and another from the University of Chittagong, where I delved into diverse statistical analyses and applications.
+
+Currently, I am a Graduate Assistant at FIU’s Biostatistics Department, where I engage in teaching and research on advanced statistical methods and R programming. My expertise spans various statistical software and programming languages including R and SAS, and I am skilled in reproducible reporting with tools like Rmarkdown and Quarto. My research interest encompasses around using statistics for answering emerging medicine and public health issues.
+
+Explore my site to learn more about my work, projects, and publications.
+:::

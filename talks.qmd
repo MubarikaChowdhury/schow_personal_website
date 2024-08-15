@@ -1,0 +1,19 @@
+---
+title: "My Blog"
+about:
+  template: jolla
+  image-width: 100%
+listing:
+  contents: posts
+  sort: "date desc"
+  type: grid
+  fields: [image, date, title, categories, reading-time]
+  image-align: right
+  max-description-length: 175
+  date-format: medium
+  categories: true
+  sort-ui: true
+  filter-ui: true
+page-layout: full
+title-block-banner: false
+---

@@ -1,0 +1,97 @@
+# Resume
+
+The pdf version of this CV can be downloaded [here](https://github.com/MubarikaChowdhury/CV/blob/main/cv_smrc_20240814.pdf)
+
+# Academic Background
+
+`Fall 2021 - Present` **Ph.D.** **in Public Health (Biostatistics)**, Florida International University
+
+`2021` **MS in Statistics,** Florida International University Miami, USA
+
+-   Thesis: "Review of logistic regression and its application".
+
+`2019` **MS in Statistics,** University of Chittagong, Chittagong, Bangladesh
+
+-   Thesis: "Factors affecting GDP Per Capita of Different Countries in Four Different Region: A Panel Data Analysis."
+
+`2016` **B.Sc. in Statistics** University of Chittagong, Chittagong, Bangladesh
+
+## Honors and Awards
+
+-   Posit::Conf (2023) Opportunity Scholar.
+
+-   Chittagong University Dean's Scholarship for graduate students (2017) : Merit based.
+
+# Teaching Experience
+
+-   `August 2021 - Present` **Graduate Assistant**, Biostatistics Department, Stempel College of Public Health, Florida International University.
+
+    -   Conducting tutoring session for graduate level Biostatistics II course.
+    -   Preparing exam and homework solution manual and grading.
+
+-   `February 2023 - Present` **Assistant Instructor** , The Research Centers in Minority Institutions (RCMI) Consortium.
+
+    -   Worked as an assistant instructor for the 10-week national series on the R programming language, using a modified version of the R for Reproducible Scientific Analysis Data Carpentry curriculum.
+
+-   `August 2019 - July 2021` **Graduate Assistant**, Mathematics and Statistics Department, Florida International University.
+
+    -   Held office hours and tutored course content through one-on-one and group discussions for undergraduate-level Statistics I, Statistics II, and Statistics for Behavioral Science courses.
+    -   Developed the skills to convey topics in various ways (visual, verbal, conceptual, etc.)
+
+-   `2017- 2019` **Invigilator**, British Council Chittagong, Bangladesh.
+
+    -   Guaranteed that all British Council-administered tests such as IELTS, Aptis, and school exams such as IGCSE, O and A Levels for Cambridge International, proceeded seamlessly on designated test days, ensuring that all assigned responsibilities and standards were fulfilled.
+
+# Technical Skills
+
+-   Programming language : R, SAS.
+-   Statistical Software : SPSS, STATA.
+-   Reproducible Report : Quarto, Markdown/Rmarkdown, LaTeX.
+-   DevOps : Git, Github.
+-   Others : Microsoft Office, Arc-GIS.
+-   Language : English, Bengali.
+
+# Professional Development & Training
+
+-   `August 2023` Advanced Tidymodels, Posit Conf. 2023
+
+-   `August 2023` Shiny in Production Tools and Techniques, Posit Conf 2023
+
+-   `August 2022 - December 2022` Instructor training, The Research Centers in Minority Institutions (RCMI) Consortium.
+
+-   `May 2021` FIU-RCMI Professional Development Series - Short Course in Systematic Reviews and Meta-Analysis.
+
+-   `May 2018` Workshop Arc GIS application in Statistics. (Department of Statistics, CU)
+ 
+# Projects
+
+-   **CTN-0094 Data Analysis Shiny Dashboard :** Created a Shiny app that provides comprehensive insights through visualizations and machine learning techniques into the CTN-0094 clinical trials.
+
+-   **Covid-19 Delta Variant Data** Applied advanced R programming skills in wrangling, cleaning, and extracting information from the CDC’s open data repository related to the Delta variant of COVID-19 hospitalization trends for three Florida Counties: Miami-Dade, Palm Beach, and Broward.
+
+-   **Heart Disease Prediction** Developing a model for Heart Disease Prediction using stepwise logistic regression. (Part of a class project for Data Analysis II course).
+
+-   **Predicting Loan Status Approval using Machine Learning** Developed and evaluated predictive models to automate loan status approvals in real-time using logistic regression, LDA, QDA, and random forest techniques. Implemented data preprocessing, model training, and validation, achieving high accuracy and effective borrower segmentation.
+
+
+# Manuscripts
+
+## Published
+
+-   **Chowdhury, S. M. R.**, Zhou, M., Kuang, L.; & Hu, N. (2023) Association between continuity of primary care with chronic conditions among patients in Guangdong Province, China. *The Open Public Health Journal.*, 16.
+
+-   **Chowdhury, S. M. R.**, George, F., Gulati, S. (2023). An application of logistic regression on Add health data: childhood abuse and anxiety. *JBE*, 8(3):314-327.
+
+-   George, F., **Chowdhury, S. M. R.**, & Gulati, S. (2022). Application of Logistic Regression on Heart Disease Data and a Review of Some Standardization Methods. *International Journal of Statistics and Probability*, 11(5).
+
+-   Pebley, K., Farage, G., Hare, M. E., Bursac, Z., Andres, A., **Chowdhury, S. M. R.**, ... & Krukowski, R. A. (2022). Changes in self-reported and accelerometer-measured physical activity among pregnant TRICARE Beneficiaries. *BMC Public Health*, 22(1), 1-8.
+
+-   Pérez-Muñoz, A., Horn, T. L., Graber, J., **Chowdhury, S. M. R.**, Bursac, Z., & Krukowski, R. A. (2022). Recruitment strategies for a post cessation weight management trial: A comparison of strategy cost-effectiveness and sample diversity. *Contemporary Clinical Trials Communications*, 30, 101037.
+
+# Poster Presentation
+
+-   **Chowdhury, S.M.R.**, Childhood Abuse and Anxiety: Logistic Regression with Add Health Survey Data; Poster presented at: 2022 Graduate Student Appreciation Week, FIU; April 2022.
+
+Please find examples of scientific authorship [here](https://scholar.google.com/citations?user=DCyE8g4AAAAJ&hl=en&oi=ao}{Google Scholar)
+
+
