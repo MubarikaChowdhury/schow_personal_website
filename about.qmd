@@ -28,7 +28,9 @@ Hi there!
 
 I’m Sultana Mubarika Rahman Chowdhury, a Ph.D. candidate in Public Health with a focus on Biostatistics at Florida International University. My academic journey includes a Master’s in Statistics from FIU and another from the University of Chittagong, where I delved into diverse statistical analyses and applications.
 
-Currently, I am a Graduate Assistant at FIU’s Biostatistics Department, where I engage in teaching and research on advanced statistical methods and R programming. My expertise spans various statistical software and programming languages including R and SAS, and I am skilled in reproducible reporting with tools like Rmarkdown and Quarto. My research interest encompasses around using statistics for answering emerging medicine and public health issues.
+Currently, I am a Graduate Assistant at FIU’s Biostatistics Department, where I engage in teaching and research on advanced statistical methods and R programming. My expertise spans various statistical software and programming languages including R and SAS, and I am skilled in reproducible reporting with tools like Rmarkdown and Quarto. 
+
+My research interest encompasses around using statistics for answering emerging medicine and public health issues. For my dissertation I am currently working on the development and application of shrinkage estimation methods and dimension reduction techniques to address multicollinearity, improving model stability and predictive accuracy in high-dimensional datasets.
 
 Explore my site to learn more about my work, projects, and publications.
 
